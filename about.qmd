@@ -5,26 +5,33 @@ sidebar: false
 
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   B.S., Industrial Engineering, Hacettepe University, Turkey, 2019 - ongoing.
+-   Faculty of Economics and Sociology, University of Lodz, Poland, 20/02/2023-03/07/2023
 
 # Work Experience
 
 ## Employements
 
-1.  Firm xxx, position xx, year xxx
+1.  Ajet, Part-time Junior Specialist, 01/01/2024-01/07/2024
 
-2.  Firm yyy, position yyy, year yyy
+2.  Turkish Airlines, Part-time Junior Officer, 05/09/2023-31/12/2023
 
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  Turkish Standards Institution, Strategy Development Intern, 17/07/2023-25/08/2024
 
-2.  Firm bbb, position yyy, year yyy
+2.  Faurecia, Project Intern,15/08/2022-12/09/2022
 
 # Projects
 
+Graduation Project, Dijital Asset Delivery thru MBSE, Turkish Aerospace, 16/10/2023-14/06/2024
+
 # Competencies
 
-R, Quarto, Git, Python
+MS Office, SolidWorks, Hoshin, Power BI, Python, Matlab, RStudio, Operational Research
 
 # Hobbies
+
+Dance, Playing the Piano, Spinning
+
+# CV
