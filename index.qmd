@@ -11,10 +11,8 @@ Please stay tuned to follow my works on data analytics, blog posts, and more.
 
 ### ![](images/YH-00257.jpg){width="134"}
 
-```{r}
-
+```{}
 ```
 
-```{r}
-
+```{}
 ```

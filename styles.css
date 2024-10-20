@@ -1,1 +1,23 @@
 /* css styles */
+
+/* Genel ayarlar */
+body {
+    background-color: #4B0082; /* Koyu mor arka plan */
+    color: #ffffff; /* Beyaz yazı rengi */
+    font-family: Arial, sans-serif; /* Yazı tipi */
+}
+
+/* Başlık ayarları */
+h1, h2, h3 {
+    color: #ff4081; /* Parlak pembe başlık rengi */
+}
+
+/* Bağlantı ayarları */
+a {
+    color: #00bcd4; /* Turkuaz bağlantı rengi */
+    text-decoration: none; /* Altı çizili yok */
+}
+
+a:hover {
+    color: #ffeb3b; /* Hover rengi sarı */
+}

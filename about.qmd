@@ -36,4 +36,6 @@ Dance, Playing the Piano, Spinning
 
 # CV
 
-[İdilTokelCV.pdf](file:///C:/Users/idilt/Downloads/%C4%B0dilTokelCV.pdf)
+You can access my CV by using the link below.
+
+<https://github.com/emu-hacettepe-analytics/emu430-fall2024-idiltokel/blob/main/docs/I%CC%87dilTokelCV.pdf>
