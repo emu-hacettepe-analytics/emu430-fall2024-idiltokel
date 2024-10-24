@@ -2,14 +2,53 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
+# 
 
-```{r}
-1 + 1
-```
-
-My first assignment has two parts.
+My first assignment has two parts. In the first part, I will give brief summary about the video called "**Veri Bilimi ve Endüstri Mühendisliği Üzerine Sohbetler- Baykal Hafızoğlu & Erdi Daşdemir.**" Then I will put two questions I prepared for this video and the answers. Then in the second part I will put the outputs of some tasks.
 
 ## (a)
 
+In the beginning of the video, Baykal Hafızoğlu was talking about his career path and what he have done so far, and his hobbies. Then he was talking about OR/Analytics and why he prefer to call analytics instead of OR. He divided the analytic word into four parts which are; Descriptive Analytics, Diagnostic Analytics, Predictive Analytics and Prescriptive Analytics. After describing them in detail, he mentioned the analytic solutions part, and the lessons he wished he had learned before he starting his job. These lessons include important steps that will help a data scientist transition into business life. Lastly, after all of these topics, he answered the questions asked to him, and finished the video after the questions.
+
+**Open-ended Question:**
+
+Why is it helpful to start any project with a clear problem definition?
+
+***Answer:** All project have to start with clear problem definition because,* *defining the problem is the most important step in starting a project; many people cannot continue with their projects because they are unable to define the problem.*
+
+**Multiple Question:**
+
+What type of analytics focuses on investigating and identifying the causes of past problems or issues by analyzing data?
+
+a\. Descriptive Analytics
+
+b\. Diagnostic Analytics
+
+c\. Predictive Analytics
+
+d\. Prescriptive Analytics
+
+***Answer:** B*
+
 ## (b)
+
+```{r}
+library(dslabs)
+data(polls_us_election_2016)
+print(head(polls_us_election_2016,10))
+print(sum(is.na(polls_us_election_2016)))
+
+newpolls_us_election2016 <- polls_us_election_2016
+x="idil"
+
+for (i in 1:length(newpolls_us_election2016)) {  
+  if (is.numeric(newpolls_us_election2016[[i]])) {
+    newpolls_us_election2016[[i]][is.na(newpolls_us_election2016[[i]])] <- 2001
+  } else if (is.character(newpolls_us_election2016[[i]])) {
+    newpolls_us_election2016[[i]][is.na(newpolls_us_election2016[[i]])] <- x
+  }
+}
+
+print(head(newpolls_us_election2016,10))
+print(sum(is.na(newpolls_us_election2016)))
+```

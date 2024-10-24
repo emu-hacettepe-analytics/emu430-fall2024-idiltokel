@@ -3,10 +3,10 @@ title: "Our Course Project"
 sidebar: false 
 ---
 
-I'm honored to be a member of the \[group name\] project team.
+I'm honored to be a member of the "Fifth Grades of IE" project team.
 
-Below, you'll find a brief summary of our project. To access a detailed project description, please go to [https://\[your-project-url\]](#0){.uri}.
+You'll find a brief summary of our project as soon as we published it. To access a detailed project description, we will put a link which probably look like [https://\[your-project-url\]](#0){.uri}.
 
 **Summary**
 
-\[provide a biref summary of your project\]
+Summary will be there soon...

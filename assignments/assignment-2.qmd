@@ -2,8 +2,6 @@
 title: "Assignment 2"
 ---
 
-# Assignment 2
+# 
 
-```{r}
-1 + 1
-```
+I will update this page as soon as the Assignment 2 published!

@@ -1,6 +1,4 @@
 /* css styles */
-
-/* Genel ayarlar */
 body {
     background-color: #4B0082; /* Koyu mor arka plan */
     color: #ffffff; /* Beyaz yazı rengi */
@@ -9,15 +7,30 @@ body {
 
 /* Başlık ayarları */
 h1, h2, h3 {
-    color: #ff4081; /* Parlak pembe başlık rengi */
+    color: #DDA0DD; /* Lila başlık rengi */
 }
 
 /* Bağlantı ayarları */
 a {
-    color: #00bcd4; /* Turkuaz bağlantı rengi */
+    color: #9370DB; /* Lila-mor bağlantı rengi */
     text-decoration: none; /* Altı çizili yok */
 }
 
 a:hover {
-    color: #ffeb3b; /* Hover rengi sarı */
+    color: #BA55D3; /* Hover rengi koyu lila */
+}
+
+/* Üst Menü Barı (Navbar) Lila Yapma */
+.navbar {
+    background-color: #DDA0DD; /* Lila rengi */
+}
+
+/* Yan Taraftaki ve Diğer Alanlar (Sidebar/Toc/Main Content) Koyu Mor */
+.sidebar, .toc, .main-content, .page, .container {
+    background-color: #4B0082; /* Koyu mor rengi */
+}
+
+/* Sol taraftaki kelebek fotoğrafının olduğu alan */
+.aside, .left-sidebar {
+    background-color: #4B0082; /* Koyu mor rengi */
 }

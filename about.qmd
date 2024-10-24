@@ -18,13 +18,13 @@ sidebar: false
 
 ## Internships
 
-1.  Turkish Standards Institution, Strategy Development Intern, 17/07/2023-25/08/2024
+1.  Turkish Standards Institution, Strategy Development Intern, 17/07/2023-25/08/2023
 
 2.  Faurecia, Project Intern,15/08/2022-12/09/2022
 
 # Projects
 
-Graduation Project, Dijital Asset Delivery thru MBSE, Turkish Aerospace, 16/10/2023-14/06/2024
+Graduation Project, Digital Asset Delivery thru MBSE, Turkish Aerospace, 16/10/2023-14/06/2024
 
 # Competencies
 
@@ -38,4 +38,4 @@ Dance, Playing the Piano, Spinning
 
 You can access my CV by using the link below.
 
-<https://github.com/emu-hacettepe-analytics/emu430-fall2024-idiltokel/blob/main/docs/I%CC%87dilTokelCV.pdf>
+[İdilTokel.pdf](https://drive.google.com/file/d/1kwUnY829M80ufJyeZIWyZp5Ulba_9qjh/view?usp=drive_link)
