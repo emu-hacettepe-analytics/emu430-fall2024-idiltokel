@@ -2,6 +2,140 @@
 title: "Assignment 2"
 ---
 
-# 
+This assignment is about "Web Scraping of Turkish Movies from IMDB" You can see the desired codes and outputs below.
 
-I will update this page as soon as the Assignment 2 published!
+I did my best on this assignment, and for some parts of the code, I used AI assistance, which I have mentioned.
+
+```{r}
+install.packages("tidyverse")  
+install.packages("rvest")    
+install.packages("ggplot2")
+
+library(tidyverse)
+library(rvest)
+library(stringr)
+library(ggplot2)
+
+# Urls for the films, first url belongs to 2010-2023, second one belongs to below 2010.
+urls <- c(
+  "https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&num_votes=2500,&country_of_origin=TR&count=250",
+  "https://m.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&num_votes=2500,&country_of_origin=TR&count=250"
+)
+
+# Scrapping the movies
+scrape_movie_data <- function(url) {
+  page <- read_html(url)
+ 
+  titles <- page %>% html_nodes(".ipc-title__text") %>% html_text()
+  years <- page %>% html_nodes(".dli-title-metadata-item:nth-child(1)") %>% html_text()
+  durations <- page %>% html_nodes(".dli-title-metadata-item:nth-child(2)") %>% html_text()
+  ratings <- page %>% html_nodes(".ratingGroup--imdb-rating") %>% html_text()
+  votes <- page %>% html_nodes(".ipc-rating-star--voteCount") %>% html_text()
+ 
+  #Check the lengths and correct any inconsistencies(I got AI help here, to aviod errors.)
+  print(paste("Number of Titles:", length(titles)))
+  print(paste("Number of Years:", length(years)))
+  print(paste("Number of Durations:", length(durations)))
+  print(paste("Number of Ratings:", length(ratings)))
+  print(paste("Number of Votes:", length(votes)))
+ 
+  #I got AI help here, to aviod errors.
+  max_length <- max(length(titles), length(years), length(durations), length(ratings), length(votes))
+  titles <- rep(titles, length.out = max_length)
+  years <- rep(years, length.out = max_length)
+  durations <- rep(durations, length.out = max_length)
+  ratings <- rep(ratings, length.out = max_length)
+  votes <- rep(votes, length.out = max_length)
+ 
+  # Convert the durations to minutes (convert hours and minutes to total minutes)
+  duration_minutes <- str_extract(durations, "\\d+(?=h)") %>%
+    as.integer() * 60 + str_extract(durations, "\\d+(?=m)") %>% as.integer()
+ 
+  #I got AI help here, to aviod errors.
+  votes_cleaned <- str_remove_all(votes, "[^0-9.KM]") %>%
+    str_replace_all("K", "e3") %>%  # 1K -> 1000, 1.5K -> 1500
+    str_replace_all("M", "e6") %>%  # 1M -> 1000000
+    as.numeric()
+ 
+  #I got AI help here, to aviod errors.
+  ratings_cleaned <- str_replace_all(ratings, "\\(.*\\)", "") %>%
+    str_trim() %>% as.double() %>% replace_na(NA)
+ 
+  #Data Frame Creating
+  movie_data <- tibble(
+    Title = titles,
+    Year = years,
+    Duration = duration_minutes,
+    Rating = ratings_cleaned,
+    Votes = votes_cleaned
+  )
+ 
+  return(movie_data)
+}
+
+# Fetching data from both URLs
+movie_data1 <- scrape_movie_data(urls[1])
+movie_data2 <- scrape_movie_data(urls[2])
+
+#Combining the datas
+combined_movie_data <- bind_rows(movie_data1, movie_data2)
+
+print(head(combined_movie_data))
+#Top 5 ranked movies
+top_rated_movies <- combined_movie_data %>%
+  arrange(desc(Rating)) %>%
+  head(5)
+
+print("Top 5 Ranked Movies:")
+print(top_rated_movies)
+
+#Bottom 5 ranked movies
+lowest_rated_movies <- combined_movie_data %>%
+  arrange(Rating) %>%
+  head(5)
+
+print("Bottom 5 Ranked Movies:")
+print(lowest_rated_movies)
+
+# Yıllara göre ortalama puan ve toplam film sayısı
+updated_movie_data <- combined_movie_data %>%
+  group_by(Year) %>%
+  mutate(Mean_Rating = mean(Rating, na.rm = TRUE), Total_Film_Count = n())
+
+# Yıllara göre ortalama puan grafiği (sütun)
+plot_mean_rating_year_col <- updated_movie_data %>%
+  ggplot(aes(x = Year, y = Mean_Rating)) +
+  geom_col() +
+  theme_minimal() +
+  labs(title = "Yıllara Göre Ortalama Puan", x = "Yıl", y = "Ortalama Puan")
+
+print(plot_mean_rating_year_col)
+
+# Yıllara göre ortalama puan grafiği (nokta)
+plot_mean_rating_year_point <- updated_movie_data %>%
+  ggplot(aes(x = Year, y = Mean_Rating)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Yıllara Göre Ortalama Puan (Nokta)", x = "Yıl", y = "Ortalama Puan")
+
+print(plot_mean_rating_year_point)
+
+# Yıllara göre puan dağılımı (boxplot)
+plot_rating_distribution_year_box <- updated_movie_data %>%
+  ggplot(aes(x = Year, y = Rating)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Yıllara Göre Puan Dağılımı", x = "Yıl", y = "Puan")
+
+print(plot_rating_distribution_year_box)
+
+# Yıllara göre toplam film sayısı grafiği
+plot_total_film_count_per_year <- updated_movie_data %>%
+  ggplot(aes(x = Year, y = Total_Film_Count)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Yıllara Göre Toplam Film Sayısı", x = "Yıl", y = "Film Sayısı")
+
+print(plot_total_film_count_per_year)
+
+```
