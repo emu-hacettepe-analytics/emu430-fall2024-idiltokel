@@ -9,6 +9,7 @@ I did my best on this assignment, and for some parts of the code, I used AI assi
 # The Code for Question 1,2,3
 
 ```{r}
+options(repos = c(CRAN = "https://cran.rstudio.com"))
 install.packages("tidyverse")  
 install.packages("rvest")    
 install.packages("ggplot2")
@@ -178,41 +179,26 @@ print(plot_duration_rating)
 
 ## Question 3
 
-**3a. Arrange your data frame in descending order by Rating. Present the top 5 and
-bottom 5 movies based on user ratings. Have you watched any of these movies? Do
-you agree or disagree with their current IMDb Ratings?**
+**3a. Arrange your data frame in descending order by Rating. Present the top 5 and bottom 5 movies based on user ratings. Have you watched any of these movies? Do you agree or disagree with their current IMDb Ratings?**
 
-*I watched "Mucize" and I think it deserves the leading place, but I can't say anything about the other top 5 and below5 because I haven't watched them yet.*
-**3b. Check the ratings of 2-3 of your favorite movies.**
+*I watched "Mucize" and I think it deserves the leading place, but I can't say anything about the other top 5 and below5 because I haven't watched them yet.* **3b. Check the ratings of 2-3 of your favorite movies.**
 
-*The code is above.*
-**3c. Considering that audience rating is a crucial indicator of movie quality, what can
-you infer about the average ratings of Turkish movies over the years? Calculate yearly
-rating averages and plot them as a scatter plot. Hint: Use functions like group_by(),
-summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of
-movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution,
-plot box plots of ratings over the years (each year having a box plot showing statistics
-about the ratings of movies in that year). What insights do you gather from the box
-plot?**
+*The code is above.* **3c. Considering that audience rating is a crucial indicator of movie quality, what can you infer about the average ratings of Turkish movies over the years? Calculate yearly rating averages and plot them as a scatter plot. Hint: Use functions like group_by(), summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution, plot box plots of ratings over the years (each year having a box plot showing statistics about the ratings of movies in that year). What insights do you gather from the box plot?**
 
 *I initially calculated the average ratings of Turkish movies by year and used a scatter plot to visualize the data. However, I realized that this could be misleading due to the increasing number of movies each year.*
 
-*To address this, I switched to using box plots, which better show the spread, median, and outliers for each year. This provided a more nuanced view, revealing how ratings vary and are distributed across different years in Turkish cinema.*
-**3d. Do you believe there is a relationship between the number of votes a movie received
-and its rating? Investigate the correlation between Votes and Ratings.**
+*To address this, I switched to using box plots, which better show the spread, median, and outliers for each year. This provided a more nuanced view, revealing how ratings vary and are distributed across different years in Turkish cinema.* **3d. Do you believe there is a relationship between the number of votes a movie received and its rating? Investigate the correlation between Votes and Ratings.**
 
-*I calculate the correlation between the number of votes and the rating. A positive correlation indicates that movies with more votes tend to have higher ratings, but this is not always the case, especially with movies that have fewer votes but high ratings.* **3e. Do you believe there is a relationship between a movie’s duration and its rating?
-Investigate the correlation between Duration and Ratings.**
+*I calculate the correlation between the number of votes and the rating. A positive correlation indicates that movies with more votes tend to have higher ratings, but this is not always the case, especially with movies that have fewer votes but high ratings.* **3e. Do you believe there is a relationship between a movie’s duration and its rating? Investigate the correlation between Duration and Ratings.**
 
 *I calculate the correlation between the duration and the rating. If the correlation is low, it suggests that the movie's length does not significantly impact its rating.*
 
 ## Question 4
 
-You can see the code for question 4 below. And for the answer of the question: "Are these the same first high-rated 11 movies in your initial data frame?"
-*The answer is no they are not the same. I think if the movies do not match because, IMDb does not use ratings alone to determine the rankings of its Top 1000 movie list, and that the ranking is a more complex combination of several factors.*
+You can see the code for question 4 below. And for the answer of the question: "Are these the same first high-rated 11 movies in your initial data frame?" *The answer is no they are not the same. I think if the movies do not match because, IMDb does not use ratings alone to determine the rankings of its Top 1000 movie list, and that the ranking is a more complex combination of several factors.*
 
 ```{r}
-
+options(repos = c(CRAN = "https://cran.rstudio.com"))
 url_top_1000_turkish <- "https://www.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR&sort=num_votes,desc"
 
 scrape_turkish_top_1000_data <- function(url) {
