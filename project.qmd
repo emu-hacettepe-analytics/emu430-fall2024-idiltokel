@@ -5,8 +5,4 @@ sidebar: false
 
 I'm honored to be a member of the "Fifth Grades of IE" project team.
 
-You'll find a brief summary of our project as soon as we published it. To access a detailed project description, we will put a link which probably look like [https://\[your-project-url\]](#0){.uri}.
-
-**Summary**
-
-Summary will be there soon...
+You'll find a brief summary of our project as soon as we published it. To access a detailed project description, you can look at our repositories: <https://github.com/emu-hacettepe-analytics/emu430-fall2024-emu430-fall2024-team-emu430-project-quarto-template>

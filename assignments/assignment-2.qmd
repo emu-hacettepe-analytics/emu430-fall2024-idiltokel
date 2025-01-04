@@ -6,6 +6,8 @@ This assignment is about "Web Scraping of Turkish Movies from IMDB" You can see 
 
 I did my best on this assignment, and for some parts of the code, I used AI assistance, which I have mentioned.
 
+# The Code for Question 1,2,3
+
 ```{r}
 install.packages("tidyverse")  
 install.packages("rvest")    
@@ -96,8 +98,14 @@ lowest_rated_movies <- combined_movie_data %>%
 
 print("Bottom 5 Ranked Movies:")
 print(lowest_rated_movies)
+fav_movies <- c("A.R.O.G", "G.O.R.A.")
 
-# Yıllara göre ortalama puan ve toplam film sayısı
+fav_movie_data <- combined_movie_data %>%
+  filter(Title %in% fav_movies) %>%
+  select(-Duration) %>% # Remove 'Duration' column as per your previous code
+  arrange(desc(Rating))
+print(fav_movie_data)
+#The average rating and total number of films by year
 updated_movie_data <- combined_movie_data %>%
   group_by(Year) %>%
   mutate(Mean_Rating = mean(Rating, na.rm = TRUE), Total_Film_Count = n())
@@ -107,35 +115,153 @@ plot_mean_rating_year_col <- updated_movie_data %>%
   ggplot(aes(x = Year, y = Mean_Rating)) +
   geom_col() +
   theme_minimal() +
-  labs(title = "Yıllara Göre Ortalama Puan", x = "Yıl", y = "Ortalama Puan")
+  labs(title = "Average Rating by Year", x = "Year", y = "Average Rating")
 
 print(plot_mean_rating_year_col)
 
-# Yıllara göre ortalama puan grafiği (nokta)
 plot_mean_rating_year_point <- updated_movie_data %>%
   ggplot(aes(x = Year, y = Mean_Rating)) +
   geom_point() +
   theme_minimal() +
-  labs(title = "Yıllara Göre Ortalama Puan (Nokta)", x = "Yıl", y = "Ortalama Puan")
+  labs(title = "Average Rating by Year (Point)", x = "Year", y = "Average Rating")
 
 print(plot_mean_rating_year_point)
 
-# Yıllara göre puan dağılımı (boxplot)
+# (boxplot)
 plot_rating_distribution_year_box <- updated_movie_data %>%
   ggplot(aes(x = Year, y = Rating)) +
   geom_boxplot() +
   theme_minimal() +
-  labs(title = "Yıllara Göre Puan Dağılımı", x = "Yıl", y = "Puan")
+  labs(title = "Average Rating by Year", x = "Year", y = "Rating")
 
 print(plot_rating_distribution_year_box)
 
-# Yıllara göre toplam film sayısı grafiği
+# Total Number of Films by Year Chart
 plot_total_film_count_per_year <- updated_movie_data %>%
   ggplot(aes(x = Year, y = Total_Film_Count)) +
   geom_point() +
   theme_minimal() +
-  labs(title = "Yıllara Göre Toplam Film Sayısı", x = "Yıl", y = "Film Sayısı")
+  labs(title = "Total Number of Films by Year", x = "Year", y = "Total Number")
 
 print(plot_total_film_count_per_year)
 
+# Correlasion Analysis for Question 3d (I got AI help here)
+cor_votes_rating <- cor(combined_movie_data$Votes, combined_movie_data$Rating, use = "complete.obs")
+print(paste("Votes and Rating Correlation:", cor_votes_rating))
+
+# Scatter plot
+plot_votes_rating <- combined_movie_data %>%
+  ggplot(aes(x = Votes, y = Rating)) +
+  geom_point() +
+  theme_minimal() +
+  scale_x_log10() +  
+  labs(title = "Votes vs Rating", x = "Votes (log scale)", y = "Rating")
+
+print(plot_votes_rating)
+
+# Correlation Analysis for Question 3d(I got AI help here) 
+cor_duration_rating <- cor(combined_movie_data$Duration, combined_movie_data$Rating, use = "complete.obs")
+print(paste("Duration and Rating Correlation:", cor_duration_rating))
+
+# Scatter plot
+plot_duration_rating <- combined_movie_data %>%
+  ggplot(aes(x = Duration, y = Rating)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Duration vs Rating", x = "Duration (minutes)", y = "Rating")
+
+print(plot_duration_rating)
+
+```
+
+# The Answers
+
+## Question 3
+
+**3a. Arrange your data frame in descending order by Rating. Present the top 5 and
+bottom 5 movies based on user ratings. Have you watched any of these movies? Do
+you agree or disagree with their current IMDb Ratings?**
+
+*I watched "Mucize" and I think it deserves the leading place, but I can't say anything about the other top 5 and below5 because I haven't watched them yet.*
+**3b. Check the ratings of 2-3 of your favorite movies.**
+
+*The code is above.*
+**3c. Considering that audience rating is a crucial indicator of movie quality, what can
+you infer about the average ratings of Turkish movies over the years? Calculate yearly
+rating averages and plot them as a scatter plot. Hint: Use functions like group_by(),
+summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of
+movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution,
+plot box plots of ratings over the years (each year having a box plot showing statistics
+about the ratings of movies in that year). What insights do you gather from the box
+plot?**
+
+*I initially calculated the average ratings of Turkish movies by year and used a scatter plot to visualize the data. However, I realized that this could be misleading due to the increasing number of movies each year.*
+
+*To address this, I switched to using box plots, which better show the spread, median, and outliers for each year. This provided a more nuanced view, revealing how ratings vary and are distributed across different years in Turkish cinema.*
+**3d. Do you believe there is a relationship between the number of votes a movie received
+and its rating? Investigate the correlation between Votes and Ratings.**
+
+*I calculate the correlation between the number of votes and the rating. A positive correlation indicates that movies with more votes tend to have higher ratings, but this is not always the case, especially with movies that have fewer votes but high ratings.* **3e. Do you believe there is a relationship between a movie’s duration and its rating?
+Investigate the correlation between Duration and Ratings.**
+
+*I calculate the correlation between the duration and the rating. If the correlation is low, it suggests that the movie's length does not significantly impact its rating.*
+
+## Question 4
+
+You can see the code for question 4 below. And for the answer of the question: "Are these the same first high-rated 11 movies in your initial data frame?"
+*The answer is no they are not the same. I think if the movies do not match because, IMDb does not use ratings alone to determine the rankings of its Top 1000 movie list, and that the ranking is a more complex combination of several factors.*
+
+```{r}
+
+url_top_1000_turkish <- "https://www.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR&sort=num_votes,desc"
+
+scrape_turkish_top_1000_data <- function(url) {
+  page <- read_html(url)
+  
+  titles <- page %>% html_nodes(".ipc-title__text") %>% html_text()
+  years <- page %>% html_nodes(".dli-title-metadata-item:nth-child(1)") %>% html_text()
+  
+  # Clean and match lengths
+  max_length <- max(length(titles), length(years))
+  titles <- rep(titles, length.out = max_length)
+  years <- rep(years, length.out = max_length)
+  
+  # Create DataFrame with Title and Year
+  movie_data <- tibble(
+    Title = titles,
+    Year = years
+  )
+  
+  return(movie_data)
+}
+
+# Fetching the data for Turkish top 1000 movies
+turkish_top_1000_data <- scrape_turkish_top_1000_data(url_top_1000_turkish)
+
+# Merge the data to add Duration, Rating, and Votes to the Turkish Top 1000 DataFrame
+merged_movie_data <- left_join(turkish_top_1000_data, combined_movie_data, by = c("Title", "Year"))
+
+# Step 1: Sort the 11 Turkish Top 1000 movies by their IMDb Rank (using Rating as a proxy)
+sorted_turkish_top_1000_by_rank <- merged_movie_data %>%
+  arrange(desc(Rating)) %>%
+  head(11)
+
+# Step 2: Get the top 11 highest-rated movies from the initial data frame
+top_rated_movies_from_initial <- combined_movie_data %>%
+  arrange(desc(Rating)) %>%
+  head(11)
+
+# Step 3: Print and compare both lists
+print("Top 11 Ranked Turkish Movies by IMDb Rank:")
+print(sorted_turkish_top_1000_by_rank)
+
+print("Top 11 Highest-Rated Movies from the Initial Data Frame:")
+print(top_rated_movies_from_initial)
+
+# Analysis: Check if the lists match(I got AI help to make this part better:)
+if(identical(sorted_turkish_top_1000_by_rank$Title, top_rated_movies_from_initial$Title)) {
+  print("The top 11 ranked movies are the same as the highest-rated 11 movies.")
+} else {
+  print("The top 11 ranked movies are not the same as the highest-rated 11 movies.")
+}
 ```
